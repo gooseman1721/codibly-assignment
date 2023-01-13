@@ -1,17 +1,12 @@
 import React, { useEffect } from "react";
-import type { RootState } from "../../app/store";
-import { useSelector, useDispatch } from "react-redux";
-import { addProducts } from "./productSlice";
 import { useGetProductPageQuery } from "../../services/productAPI";
+import Product from "../../Product";
 
 export default function ProductDisplay(props: {
   pageNumber: number;
   setMaxPage: React.Dispatch<React.SetStateAction<number>>;
 }) {
   const { pageNumber, setMaxPage } = props;
-  const products = useSelector((state: RootState) => state.product.productData);
-  const dispatch = useDispatch();
-
   const { data, error, isLoading } = useGetProductPageQuery(pageNumber);
 
   useEffect(() => {
@@ -20,7 +15,6 @@ export default function ProductDisplay(props: {
     }
   }, [isLoading]);
 
-
   return (
     <div>
       {error ? (
@@ -28,7 +22,7 @@ export default function ProductDisplay(props: {
       ) : isLoading ? (
         <span>Loading...</span>
       ) : data ? (
-        <div>{JSON.stringify(data.data)}</div>
+        data.data.map((product) => <Product product={product} key={product.id} />)
       ) : null}
     </div>
   );

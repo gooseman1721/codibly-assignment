@@ -46,7 +46,7 @@ export default function GetProductPage(props: { pageNumber: number }) {
     return <span>Error: {error.message}</span>;
   }
 
-  return isSuccess ? <div>Endpoint response: {JSON.stringify(data.data)}</div> : <div></div>
+  return isSuccess ? <div>Endpoint response: {JSON.stringify(data)}</div> : <div></div>
 
   
 

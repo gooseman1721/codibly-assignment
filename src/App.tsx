@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { css } from "@emotion/react";
-import GetProductPage from "./queries/GetProductPage";
+
 import { useParams, Link } from "react-router-dom";
+import ProductDisplay from "./features/product/ProductDisplay";
 
 type Params = {
   pageNumber: string;
@@ -9,8 +10,10 @@ type Params = {
 
 function App() {
   const [clicked, setClicked] = useState(false);
+  const [maxPage, setMaxPage] = useState(1);
+
   const { pageNumber } = useParams<Params>() as Params;
-  const maxPage = 3;
+
   const previousPage =
     parseInt(pageNumber) === 1 ? 1 : parseInt(pageNumber) - 1;
   const nextPage =
@@ -31,13 +34,18 @@ function App() {
       </h1>
       <h5>Your #1 source of products</h5>
       <button onClick={() => handleClick()}>Fetch stuff</button>
-      {clicked && <GetProductPage pageNumber={parseInt(pageNumber)} />}
       <Link to={`/page/${previousPage}`}>
         <button>Previous</button>
       </Link>
       <Link to={`/page/${nextPage}`}>
         <button>Next</button>
       </Link>
+      {clicked && (
+        <ProductDisplay
+          pageNumber={parseInt(pageNumber)}
+          setMaxPage={setMaxPage}
+        />
+      )}
     </div>
   );
 }

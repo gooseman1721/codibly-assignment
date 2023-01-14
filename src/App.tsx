@@ -4,6 +4,20 @@ import { css } from "@emotion/react";
 import { useParams, Link } from "react-router-dom";
 import ProductDisplay from "./features/product/ProductDisplay";
 
+const containerStyle = css`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+`;
+
+const h1Style = css`
+  color: red;
+`;
+const navStyle = css`
+  margin-top: auto;
+`;
+
 type Params = {
   pageNumber: string;
 };
@@ -24,28 +38,22 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <h1
-        css={css`
-          color: red;
-        `}
-      >
-        The product list
-      </h1>
+    <div css={containerStyle}>
+      <h1 css={h1Style}>The product list</h1>
       <h5>Your #1 source of products</h5>
       <button onClick={() => handleClick()}>Fetch stuff</button>
-      <Link to={`/page/${previousPage}`}>
-        <button>Previous</button>
-      </Link>
-      <Link to={`/page/${nextPage}`}>
-        <button>Next</button>
-      </Link>
-      {clicked && (
-        <ProductDisplay
-          pageNumber={parseInt(pageNumber)}
-          setMaxPage={setMaxPage}
-        />
-      )}
+      <ProductDisplay
+        pageNumber={parseInt(pageNumber)}
+        setMaxPage={setMaxPage}
+      />
+      <nav css={navStyle}>
+        <Link to={`/page/${previousPage}`}>
+          <button> &lt; </button>
+        </Link>
+        <Link to={`/page/${nextPage}`}>
+          <button> &gt; </button>
+        </Link>
+      </nav>
     </div>
   );
 }

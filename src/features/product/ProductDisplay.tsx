@@ -1,6 +1,13 @@
 import React, { useEffect } from "react";
 import { useGetProductPageQuery } from "../../services/productAPI";
 import Product from "../../Product";
+import { css } from "@emotion/react";
+
+const containerStyle = css`
+    width: 80vw;
+    max-width: 600px;
+    height: 45vh;
+`
 
 export default function ProductDisplay(props: {
   pageNumber: number;
@@ -16,7 +23,7 @@ export default function ProductDisplay(props: {
   }, [isLoading]);
 
   return (
-    <div>
+    <div css={containerStyle}>
       {error ? (
         <span>Error!</span>
       ) : isLoading ? (

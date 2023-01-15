@@ -7,7 +7,7 @@ const containerStyle = css`
   color: black;
   display: flex;
   justify-content: space-between;
-  padding: 2vh;
+  padding: 1rem;
   margin-bottom: 20px;
 
   box-shadow: 7px 7px 0px black;

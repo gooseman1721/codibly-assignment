@@ -4,16 +4,17 @@ import Product from "../../Product";
 import { css } from "@emotion/react";
 
 const containerStyle = css`
-    width: 80vw;
-    max-width: 600px;
-    height: 45vh;
-`
+  width: 80vw;
+  max-width: 25rem;
+  height: 330px;
+`;
 
 export default function ProductDisplay(props: {
   pageNumber: number;
   setMaxPage: React.Dispatch<React.SetStateAction<number>>;
+  setItemTotal: React.Dispatch<React.SetStateAction<number>>;
 }) {
-  const { pageNumber, setMaxPage } = props;
+  const { pageNumber, setMaxPage, setItemTotal } = props;
   const { data, error, isLoading } = useGetProductPageQuery(pageNumber);
 
   useEffect(() => {
@@ -29,7 +30,9 @@ export default function ProductDisplay(props: {
       ) : isLoading ? (
         <span>Loading...</span>
       ) : data ? (
-        data.data.map((product) => <Product product={product} key={product.id} />)
+        data.data.map((product) => (
+          <Product product={product} key={product.id} />
+        ))
       ) : null}
     </div>
   );

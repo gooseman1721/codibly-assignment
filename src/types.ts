@@ -5,11 +5,17 @@ type Product = {
   color: string;
   pantone_value: string;
 };
-type EndpointResponse = {
+
+type ProductEndpointResponse = {
+  data: Product;
+};
+
+type PageEndpointResponse = {
+  data: Product[];
   page: number;
   per_page: number;
   total_pages: number;
-  data: Product[];
+  total: number;
 };
 
-export type { Product, EndpointResponse };
+export type { Product, PageEndpointResponse, ProductEndpointResponse };

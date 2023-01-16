@@ -12,9 +12,9 @@ const containerStyle = css`
 export default function ProductDisplay(props: {
   pageNumber: number;
   setMaxPage: React.Dispatch<React.SetStateAction<number>>;
-  setItemTotal: React.Dispatch<React.SetStateAction<number>>;
+  onProductClick: (productId: number) => void;
 }) {
-  const { pageNumber, setMaxPage, setItemTotal } = props;
+  const { pageNumber, setMaxPage, onProductClick } = props;
   const { data, error, isLoading } = useGetProductPageQuery(pageNumber);
 
   useEffect(() => {
@@ -31,7 +31,9 @@ export default function ProductDisplay(props: {
         <span>Loading...</span>
       ) : data ? (
         data.data.map((product) => (
-          <Product product={product} key={product.id} />
+          <div key={product.id} onClick={() => onProductClick(product.id)}>
+            <Product product={product} />
+          </div>
         ))
       ) : null}
     </div>

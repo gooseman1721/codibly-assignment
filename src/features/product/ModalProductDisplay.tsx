@@ -6,7 +6,6 @@ import { css } from "@emotion/react";
 const containerStyle = css`
   width: 80vw;
   max-width: 25rem;
-  height: 330px;
 `;
 
 const spanStyle = css`
@@ -14,11 +13,8 @@ const spanStyle = css`
   justify-content: center;
 `;
 
-export default function SingleProductDisplay(props: {
-  productId: number;
-  onProductClick: (productId: number) => void;
-}) {
-  const { productId, onProductClick } = props;
+export default function ModalProductDisplay(props: { productId: number }) {
+  const { productId } = props;
   const { data, error, isLoading } = useGetSingleProductQuery(productId);
 
   return (
@@ -35,9 +31,7 @@ export default function SingleProductDisplay(props: {
       ) : isLoading ? (
         <span css={spanStyle}>Loading...</span>
       ) : data ? (
-        <div onClick={() => onProductClick(productId)}>
-          <Product product={data.data} />
-        </div>
+        <Product product={data.data} />
       ) : null}
     </div>
   );

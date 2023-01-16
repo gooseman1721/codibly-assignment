@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { css } from "@emotion/react";
 
 import { useParams, Link } from "react-router-dom";
 import ProductDisplay from "./features/product/ProductDisplay";
 import FilterTextBox from "./FilterTextBox";
 import SingleProductDisplay from "./features/product/SingleProductDisplay";
+import Modal from "./Modal";
 
 const containerStyle = css`
   display: flex;
@@ -17,7 +18,7 @@ const h1Style = css`
   color: red;
 `;
 const navStyle = css`
-  margin-top: 1rem;
+  margin-top: 2.5rem;
 `;
 
 type Params = {
@@ -28,6 +29,8 @@ type Params = {
 function App() {
   const [maxPage, setMaxPage] = useState(1);
   const [itemTotal, setItemTotal] = useState(1);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [clickedProduct, setClickedProduct] = useState(0);
 
   const { pageNumber, productId } = useParams<Params>() as Params;
 
@@ -42,29 +45,48 @@ function App() {
     ? maxPage
     : parseInt(pageNumber) + 1;
 
-  return (
-    <div css={containerStyle}>
-      <h1 css={h1Style}>The product list</h1>
-      <h5>Your #1 source of products</h5>
-      <FilterTextBox itemTotal={itemTotal} />
-      {pageNumber && (
-        <ProductDisplay
-          pageNumber={parseInt(pageNumber)}
-          setMaxPage={setMaxPage}
-          setItemTotal={setItemTotal}
-        />
-      )}
-      {productId && <SingleProductDisplay productId={parseInt(productId)} />}
+  useEffect(() => {
+    console.log(clickedProduct);
+  }, [clickedProduct]);
 
-      <nav css={navStyle}>
-        <Link to={`/page/${previousPage}`}>
-          <button> &lt; </button>
-        </Link>
-        <Link to={`/page/${nextPage}`}>
-          <button> &gt; </button>
-        </Link>
-      </nav>
-    </div>
+  function onProductClick(productId: number) {
+    setModalOpen(true);
+    setClickedProduct(productId);
+  }
+
+  return (
+    <>
+      <div css={containerStyle}>
+        <h1 css={h1Style}>The product list</h1>
+        <h5>Your #1 source of products</h5>
+        <FilterTextBox itemTotal={itemTotal} />
+        {pageNumber && (
+          <ProductDisplay
+            pageNumber={parseInt(pageNumber)}
+            setMaxPage={setMaxPage}
+            onProductClick={onProductClick}
+          />
+        )}
+        {productId && (
+          <SingleProductDisplay
+            productId={parseInt(productId)}
+            onProductClick={onProductClick}
+          />
+        )}
+
+        <nav css={navStyle}>
+          <Link to={`/page/${previousPage}`}>
+            <button> &lt; </button>
+          </Link>
+          <Link to={`/page/${nextPage}`}>
+            <button> &gt; </button>
+          </Link>
+        </nav>
+      </div>
+      {modalOpen && (
+        <Modal productId={clickedProduct} setModalOpen={setModalOpen} />
+      )}
+    </>
   );
 }
 

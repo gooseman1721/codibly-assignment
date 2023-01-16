@@ -13,6 +13,7 @@ const modalContainerStyle = css`
   right: 0;
   top: 0%;
   height: 100%;
+  width: 100%;
   margin: 0 auto;
 
   z-index: 1000;

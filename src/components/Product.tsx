@@ -1,7 +1,7 @@
 import React from "react";
 import { css } from "@emotion/react";
 
-import type { Product } from "./types";
+import type { Product } from "../types";
 
 const containerStyle = css`
   color: black;

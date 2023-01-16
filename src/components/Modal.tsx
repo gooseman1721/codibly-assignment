@@ -1,8 +1,8 @@
 import React from "react";
 import { createPortal } from "react-dom";
-import { Product } from "./types";
+import { Product } from "../types";
 import { css } from "@emotion/react";
-import ModalProductDisplay from "./features/product/ModalProductDisplay";
+import ModalProductDisplay from "../features/product/ModalProductDisplay";
 
 const modalContainerStyle = css`
   background-color: #8b7f7f68;

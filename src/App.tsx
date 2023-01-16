@@ -3,9 +3,9 @@ import { css } from "@emotion/react";
 
 import { useParams, Link } from "react-router-dom";
 import ProductDisplay from "./features/product/ProductDisplay";
-import FilterTextBox from "./FilterTextBox";
+import FilterTextBox from "./components/FilterTextBox";
 import SingleProductDisplay from "./features/product/SingleProductDisplay";
-import Modal from "./Modal";
+import Modal from "./components/Modal";
 
 const containerStyle = css`
   display: flex;

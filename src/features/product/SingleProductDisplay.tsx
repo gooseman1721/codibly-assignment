@@ -1,6 +1,6 @@
 import React from "react";
 import { useGetSingleProductQuery } from "../../services/productAPI";
-import Product from "../../Product";
+import Product from "../../components/Product";
 import { css } from "@emotion/react";
 
 const containerStyle = css`

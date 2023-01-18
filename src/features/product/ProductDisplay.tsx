@@ -9,6 +9,11 @@ const containerStyle = css`
   height: 350px;
 `;
 
+const spanStyle = css`
+  display: flex;
+  justify-content: center;
+`;
+
 export default function ProductDisplay(props: {
   pageNumber: number;
   setMaxPage: React.Dispatch<React.SetStateAction<number>>;
@@ -26,15 +31,26 @@ export default function ProductDisplay(props: {
   return (
     <div css={containerStyle}>
       {error ? (
-        <span>Error!</span>
+        <span css={spanStyle}>
+          Error{" "}
+          {"data" in error
+            ? error.status === 404
+              ? `404: No such product page: ${pageNumber}`
+              : JSON.stringify(error.status)
+            : null}
+        </span>
       ) : isLoading ? (
-        <span>Loading...</span>
+        <span css={spanStyle}>Loading...</span>
       ) : data ? (
-        data.data.map((product) => (
-          <div key={product.id} onClick={() => onProductClick(product.id)}>
-            <Product product={product} />
-          </div>
-        ))
+        data.data.length ? (
+          data.data.map((product) => (
+            <div key={product.id} onClick={() => onProductClick(product.id)}>
+              <Product product={product} />
+            </div>
+          ))
+        ) : (
+          <span css={spanStyle}>No data for page {pageNumber}</span>
+        )
       ) : null}
     </div>
   );

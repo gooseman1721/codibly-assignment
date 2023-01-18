@@ -9,10 +9,8 @@ const containerStyle = css`
   justify-content: space-between;
   padding: 1rem;
   margin-bottom: 20px;
-  border: 3px black solid;
-  border-radius: 10px;
-
-  box-shadow: 4px 4px 0px black;
+  border-radius: 5px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 
   /* @keyframes slide-left {
     from {
@@ -32,14 +30,15 @@ const containerStyle = css`
   }
 `;
 
-
 export default function Product(props: { product: Product }) {
   const { product } = props;
   return (
-    <div css={css`
+    <div
+      css={css`
         ${containerStyle}
         background-color: ${product.color};
-    `}>
+      `}
+    >
       <div>{product.id}</div>
       <div>{product.name}</div>
       <div>{product.year}</div>

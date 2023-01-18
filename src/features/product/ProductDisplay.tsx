@@ -6,7 +6,7 @@ import { css } from "@emotion/react";
 const containerStyle = css`
   width: 80vw;
   max-width: 25rem;
-  height: 330px;
+  height: auto;
 `;
 
 export default function ProductDisplay(props: {

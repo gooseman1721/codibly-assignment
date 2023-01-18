@@ -14,6 +14,11 @@ const containerStyle = css`
   gap: 10px;
 `;
 
+const mainStyle = css`
+  border: dotted 0px black;
+  height: auto;
+`;
+
 const h1Style = css`
   color: red;
 `;
@@ -60,19 +65,21 @@ function App() {
         <h1 css={h1Style}>The product list</h1>
         <h5>Your #1 source of products</h5>
         <FilterTextBox itemTotal={itemTotal} />
-        {pageNumber && (
-          <ProductDisplay
-            pageNumber={parseInt(pageNumber)}
-            setMaxPage={setMaxPage}
-            onProductClick={onProductClick}
-          />
-        )}
-        {productId && (
-          <SingleProductDisplay
-            productId={parseInt(productId)}
-            onProductClick={onProductClick}
-          />
-        )}
+        <main css={mainStyle}>
+          {pageNumber && (
+            <ProductDisplay
+              pageNumber={parseInt(pageNumber)}
+              setMaxPage={setMaxPage}
+              onProductClick={onProductClick}
+            />
+          )}
+          {productId && (
+            <SingleProductDisplay
+              productId={parseInt(productId)}
+              onProductClick={onProductClick}
+            />
+          )}
+        </main>
 
         <nav css={navStyle}>
           <Link to={`/page/${previousPage}`}>

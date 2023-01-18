@@ -12,6 +12,9 @@ const containerStyle = css`
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 25rem;
 `;
 
 const mainStyle = css`

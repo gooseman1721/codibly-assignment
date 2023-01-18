@@ -25,6 +25,10 @@ const rowStyle = css`
   justify-content: space-between;
 `;
 
+const attributeNameStyle = css`
+    font-weight: 700;
+`
+
 export default function ModalProduct(props: { product: Product }) {
   const { product } = props;
   return (
@@ -34,22 +38,22 @@ export default function ModalProduct(props: { product: Product }) {
       `}
     >
       <div css={rowStyle}>
-        <div>ID</div>
+        <div css={attributeNameStyle}>ID</div>
         <div>{product.id}</div>
       </div>
       <hr css={dividerStyle} />
       <div css={rowStyle}>
-        <div>Name</div>
+        <div css={attributeNameStyle}>Name</div>
         <div>{product.name}</div>
       </div>
       <hr css={dividerStyle} />
       <div css={rowStyle}>
-        <div>Year</div>
+        <div css={attributeNameStyle}>Year</div>
         <div>{product.year}</div>
       </div>
       <hr css={dividerStyle} />
       <div css={rowStyle}>
-        <div>Color</div>
+        <div css={attributeNameStyle}>Color</div>
         <div
           css={css`
             &:hover {
@@ -62,7 +66,7 @@ export default function ModalProduct(props: { product: Product }) {
       </div>
       <hr css={dividerStyle} />
       <div css={rowStyle}>
-        <div>Pantone value</div>
+        <div css={attributeNameStyle}>Pantone value</div>
         <div>{product.pantone_value}</div>
       </div>
       <hr css={dividerStyle} />

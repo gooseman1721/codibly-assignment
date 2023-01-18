@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react";
-import { css } from "@emotion/react";
+import { css, Global } from "@emotion/react";
 
 import { useParams, Link } from "react-router-dom";
 import ProductDisplay from "./features/product/ProductDisplay";
 import FilterTextBox from "./components/FilterTextBox";
 import SingleProductDisplay from "./features/product/SingleProductDisplay";
 import Modal from "./components/Modal";
+
+const globalStyles = css`
+  .everything {
+    font-family: "Roboto";
+  }
+`;
 
 const containerStyle = css`
   display: flex;
@@ -23,10 +29,25 @@ const mainStyle = css`
 `;
 
 const h1Style = css`
-  color: red;
+  font-weight: 900;
 `;
 const navStyle = css`
-  margin-top: 2.5rem;
+  display: flex;
+  margin-top: 3rem;
+  gap: 20px;
+`;
+
+const navButtonStyle = css`
+  border-radius: 5px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  border: 0px;
+  background-color: white;
+  transition: scale 0.05s ease-in-out;
+  &:hover {
+    cursor: pointer;
+    transition: scale 0.05s ease-in-out;
+    transform: scale(115%);
+  }
 `;
 
 type Params = {
@@ -64,7 +85,8 @@ function App() {
 
   return (
     <>
-      <div css={containerStyle}>
+      <Global styles={globalStyles} />
+      <div css={containerStyle} className="everything">
         <h1 css={h1Style}>The product list</h1>
         <h5>Your #1 source of products</h5>
         <FilterTextBox itemTotal={itemTotal} />
@@ -86,16 +108,22 @@ function App() {
 
         <nav css={navStyle}>
           <Link to={`/page/${previousPage}`}>
-            <button> &lt; </button>
+            <button className="material-symbols-outlined" css={navButtonStyle}>
+              arrow_back
+            </button>
           </Link>
           <Link to={`/page/${nextPage}`}>
-            <button> &gt; </button>
+            <button className="material-symbols-outlined" css={navButtonStyle}>
+              arrow_forward
+            </button>
           </Link>
         </nav>
       </div>
-      {modalOpen && (
-        <Modal productId={clickedProduct} setModalOpen={setModalOpen} />
-      )}
+      <div>
+        {modalOpen && (
+          <Modal productId={clickedProduct} setModalOpen={setModalOpen} />
+        )}
+      </div>
     </>
   );
 }

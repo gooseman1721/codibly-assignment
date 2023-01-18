@@ -26,7 +26,7 @@ export default function Modal(props: {
   const { productId, setModalOpen } = props;
 
   return createPortal(
-    <div css={modalContainerStyle} onClick={() => setModalOpen(false)}>
+    <div className="everything" css={modalContainerStyle} onClick={() => setModalOpen(false)}>
       <ModalProductDisplay productId={productId} />
     </div>,
     document.getElementById("portal") as Element

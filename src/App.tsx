@@ -41,12 +41,12 @@ function App() {
 
   const previousPage = !pageNumber
     ? 1
-    : parseInt(pageNumber) === 1
+    : parseInt(pageNumber) === 1 || parseInt(pageNumber) > maxPage
     ? 1
     : parseInt(pageNumber) - 1;
   const nextPage = !pageNumber
     ? 1
-    : parseInt(pageNumber) === maxPage
+    : parseInt(pageNumber) >= maxPage
     ? maxPage
     : parseInt(pageNumber) + 1;
 

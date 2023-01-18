@@ -2,10 +2,12 @@ import React from "react";
 import { useGetSingleProductQuery } from "../../services/productAPI";
 import Product from "../../components/Product";
 import { css } from "@emotion/react";
+import ModalProduct from "../../components/ModalProduct";
 
 const containerStyle = css`
   width: 18rem;
-  height: 27rem;
+  height: max-content;
+  min-height: 15rem;
 
   margin-top: 10rem;
 
@@ -13,16 +15,19 @@ const containerStyle = css`
   justify-content: center;
   align-items: center;
 
-  background-color: #d9e0e0;
-  border: 3px black solid;
-  border-radius: 10px;
+  background-color: #f8f8f8;
+  border-radius: 5px;
 
-  box-shadow: 4px 4px 0px black;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 `;
 
 const spanStyle = css`
   display: flex;
   justify-content: center;
+`;
+
+const productContainerStyle = css`
+  width: 100%;
 `;
 
 export default function ModalProductDisplay(props: { productId: number }) {
@@ -43,8 +48,8 @@ export default function ModalProductDisplay(props: { productId: number }) {
       ) : isLoading ? (
         <span css={spanStyle}>Loading...</span>
       ) : data ? (
-        <div>
-          <Product product={data.data} />
+        <div css={productContainerStyle}>
+          <ModalProduct product={data.data} />
         </div>
       ) : null}
     </div>

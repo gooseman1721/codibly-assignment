@@ -39,12 +39,9 @@ const filterButtonInactive = css`
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   border: 0px;
   background-color: white;
-
-  
 `;
 
-export default function FilterTextBox(props: { itemTotal: number }) {
-  const { itemTotal } = props;
+export default function FilterTextBox() {
   const [inputValue, setInputValue] = useState("");
 
   function filterChars(textBoxValue: string) {
@@ -74,7 +71,6 @@ export default function FilterTextBox(props: { itemTotal: number }) {
           filterCharsOnPaste(e.clipboardData.getData("text"));
         }}
         min={1}
-        max={itemTotal}
         css={inputStyle}
       />
 

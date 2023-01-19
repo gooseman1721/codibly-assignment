@@ -57,7 +57,6 @@ type Params = {
 
 function App() {
   const [maxPage, setMaxPage] = useState(1);
-  const [itemTotal, setItemTotal] = useState(1);
   const [modalOpen, setModalOpen] = useState(false);
   const [clickedProduct, setClickedProduct] = useState(0);
 
@@ -89,7 +88,7 @@ function App() {
       <div css={containerStyle} className="everything">
         <h1 css={h1Style}>The product list</h1>
         <h5>Your #1 source of products</h5>
-        <FilterTextBox itemTotal={itemTotal} />
+        <FilterTextBox />
         <main css={mainStyle}>
           {pageNumber && (
             <ProductDisplay

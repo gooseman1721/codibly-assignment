@@ -30,7 +30,15 @@ const mainStyle = css`
 
 const h1Style = css`
   font-weight: 900;
+  margin-bottom: 0;
 `;
+
+const h5Style = css`
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 50px;
+`;
+
 const navStyle = css`
   display: flex;
   margin-top: 3rem;
@@ -87,7 +95,7 @@ function App() {
       <Global styles={globalStyles} />
       <div css={containerStyle} className="everything">
         <h1 css={h1Style}>The product list</h1>
-        <h5>Your #1 source of products</h5>
+        <h5 css={h5Style}>Your #1 source of products</h5>
         <FilterTextBox />
         <main css={mainStyle}>
           {pageNumber && (

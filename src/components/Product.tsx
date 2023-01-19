@@ -14,16 +14,6 @@ const containerStyle = css`
 
   font-weight: 700;
 
-  /* @keyframes slide-left {
-    from {
-      transform: translateX(500%);
-    }
-    to {
-      transform: translateX(0%);
-    }
-  }
-  animation: 0.5s slide-left; */
-
   transition: all 0.05s ease-in-out;
   &:hover {
     cursor: pointer;

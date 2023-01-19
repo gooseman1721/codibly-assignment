@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 const containerStyle = css`
   display: flex;
   width: 100%;
-  //gap: 40px;
   justify-content: space-between;
   padding: 0.5rem;
 `;
